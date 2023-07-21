@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EMF Project</title>
+</head>
+<body>
+    <h2 class="title-section">Economic Market Forecasting</h2>
+    <p class="title-section">Pick the target asset class you want to predict:</p>
+    <hr>
+    <form action="target">
+        <!-- <input type="text" name="username"> -->
+    <select name="target" id="target">
+        <option value="SP500">SP500</option>
+        <option value="NASDAQ">NASDAQ</option>
+        <option value="Dow_Jones">Dow Jones</option>
+        <option value="CorporateBonds">US Corporate Bonds</option>
+        <option value="Gold">Gold</option>
+        <option value="Energy">Energy</option>
+        <option value="Materials">Materials</option>
+        <option value="Industrials">Industrials</option>
+        <option value="Utilities">Utilities</option>
+        <option value="Healthcare">Healthcare</option>
+        <option value="Financials">Financials</option>
+        <option value="Discretionary">Consumer Discretionary</option>
+        <option value="Staples">Consumer Staples</option>
+        <option value="Technology">Information Technology</option>
+        <option value="Communications">Communication Services</option>
+        <option value="RealEstate">Real Estate</option>
+    </select>
+        <br>
+        <input type="submit" name="Submit" value="Submit">
+    </form>
+    <br>
+    <br>
+    <p id="explainer">This site utilizes an advanced machine learning algorithm to predict the value of the target asset class based on historical data of the most important economic indicators</p>
+</body>
+</html>

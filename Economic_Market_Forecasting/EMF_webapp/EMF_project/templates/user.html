@@ -11,5 +11,31 @@
     <h2 class="title-section">Economic Market Forecasting</h2>
     <h2>Hello, {{ name }}</h2>
     {% endblock content%}
+
+    <form action="target">
+        <!-- <input type="text" name="username"> -->
+    <select name="target" id="target">
+        <option value="SP500">SP500</option>
+        <option value="NASDAQ">NASDAQ</option>
+        <option value="Dow_Jones">Dow Jones</option>
+        <option value="CorporateBonds">US Corporate Bonds</option>
+        <option value="Gold">Gold</option>
+        <option value="Energy">Energy</option>
+        <option value="Materials">Materials</option>
+        <option value="Industrials">Industrials</option>
+        <option value="Utilities">Utilities</option>
+        <option value="Healthcare">Healthcare</option>
+        <option value="Financials">Financials</option>
+        <option value="Discretionary">Consumer Discretionary</option>
+        <option value="Staples">Consumer Staples</option>
+        <option value="Technology">Information Technology</option>
+        <option value="Communications">Communication Services</option>
+        <option value="RealEstate">Real Estate</option>
+    </select>
+        <br>
+        <br>
+        <input type="submit" name="Submit" value="Submit">
+    </form>
+    
 </body>
 </html>

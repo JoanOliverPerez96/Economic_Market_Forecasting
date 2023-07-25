@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -5,36 +6,134 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>EMF Project</title>
+    <style>
+        /* BullGlobe Title Section */
+        * {
+        box-sizing: border-box;
+        }
+        :root {
+        --background-color: #041b46;
+        --text-color: hsl(0, 0%, 100%);
+        }
+        body {
+        margin: 0;
+        }
+        .wrapper {
+        display: grid;
+        place-content: center;
+        background-image: linear-gradient(to left, #041b46, #48acfd);
+        min-height: 40vh;
+        font-family: "Oswald", sans-serif;
+        font-size: clamp(1rem, .9rem + 9vw, 7.5rem);
+        font-weight: 700;
+        text-transform: uppercase;
+        color: var(--text-color);
+        padding-top: 3%;
+        
+        }
+        .wrapper > div {
+        grid-area: 1/1/-1/-1;
+        }
+        .top {
+        clip-path: polygon(0% 0%, 100% 0%, 100% 48%, 0% 58%);
+        }
+        .bottom {
+        clip-path: polygon(0% 60%, 100% 50%, 100% 100%, 0% 100%);
+        color: transparent;
+        background: -webkit-linear-gradient(177deg, #2455af 53%, var(--text-color) 65%);
+        background: linear-gradient(177deg, #2455af 53%, var(--text-color) 65%);
+        background-clip: text;
+        -webkit-background-clip: text;
+        transform: translateX(-0.02em);
+        }
+        /* BullGlobe Title Section */
+        /* EMF Title Section */
+
+        .title-section {
+            margin: 5% 0% 3% 0%;
+            padding-bottom: 3%;
+            font-size: clamp(.5rem, .3rem + 5vw, 3rem);
+            font-weight: 300;
+            color: var(--text-color);
+            font-family: "Oswald", sans-serif;
+            text-align: center;
+
+        }
+        .explainer {
+            margin-top: 2.5%;
+            text-align: center;
+        }
+
+        .subheader-section {
+            margin: 0% 0% 0% 0%;
+            padding-bottom: 2%;
+            font-size: clamp(.3rem, .3rem + 4vw, 1.4rem);
+            font-weight: 300;
+            color: black;
+            font-family: "Oswald", sans-serif;
+            text-align: center;
+
+        }
+
+        .prediction-button-section {
+            margin: 5% 0% 5% 0%;
+            padding-bottom: 2%;
+            font-size: clamp(.3rem, .3rem + 4vw, 1.4rem);
+            font-weight: 300;
+            color: black;
+            font-family: "Oswald", sans-serif;
+            text-align: center;
+        }
+
+        .prediction-button {
+            margin: 1% 1% 1% 1%;
+            padding: 3%;
+            background: #1a2fa8;
+            color: aliceblue;
+        }
+        .prediction-section {
+            /* margin: 5% 0% 5% 0%;
+            padding-bottom: 2%; */
+            text-align: center;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-size: 2vw;
+        }
+    </style>
 </head>
 <body>
+
+    <section class="wrapper">
+        <div class="top">BullGlobe</div>
+        <div class="bottom" aria-hidden="true">BullGlobe</div>
     <h2 class="title-section">Economic Market Forecasting</h2>
-    <p class="title-section">Pick the target asset class you want to predict:</p>
-    <hr>
-    <form action="target">
-        <!-- <input type="text" name="username"> -->
-    <select name="target" id="target">
-        <option value="SP500">SP500</option>
-        <option value="NASDAQ">NASDAQ</option>
-        <option value="Dow_Jones">Dow Jones</option>
-        <option value="CorporateBonds">US Corporate Bonds</option>
-        <option value="Gold">Gold</option>
-        <option value="Energy">Energy</option>
-        <option value="Materials">Materials</option>
-        <option value="Industrials">Industrials</option>
-        <option value="Utilities">Utilities</option>
-        <option value="Healthcare">Healthcare</option>
-        <option value="Financials">Financials</option>
-        <option value="Discretionary">Consumer Discretionary</option>
-        <option value="Staples">Consumer Staples</option>
-        <option value="Technology">Information Technology</option>
-        <option value="Communications">Communication Services</option>
-        <option value="RealEstate">Real Estate</option>
-    </select>
-        <br>
-        <input type="submit" name="Submit" value="Submit">
-    </form>
+    </section>
+    <p class="explainer">This site utilizes an advanced machine learning algorithm to predict the value of the target asset class based on historical data of the most important economic indicators</p>
+    <p class="subheader-section">Pick the target asset class or sector you want to predict:</p>
+    <br>
+    <h3 class="prediction-section">General Asset Classes</h3>
+    <div class="prediction-button-section">
+        <a href="/prediction/SP500" class="prediction-button">S&P 500</a>
+        <a href="/prediction/Dow_Jones" class="prediction-button">Dow Jones</a>
+        <a href="/prediction/NASDAQ" class="prediction-button">NASDAQ</a>
+        <a href="/prediction/CorporateBonds" class="prediction-button">US Corporate Bonds</a>
+        <a href="/prediction/Gold" class="prediction-button">Gold</a>
+    </div>
+    <h3 class="prediction-section">Main Sectors</h3>
+    <div class="prediction-button-section">
+        <a href="/prediction/Discretionary" class="prediction-button">Discretionary</a>
+        <a href="/prediction/Energy" class="prediction-button">Energy</a>
+        <a href="/prediction/Financials" class="prediction-button">Financials</a>
+        <a href="/prediction/Healthcare" class="prediction-button">Healthcare</a>
+        <a href="/prediction/Industrials" class="prediction-button">Industrials</a>
+    </div>
+    <div class="prediction-button-section">
+        <a href="/prediction/Materials" class="prediction-button">Materials</a>
+        <a href="/prediction/RealEstate" class="prediction-button">RealEstate</a>
+        <a href="/prediction/Staples" class="prediction-button">Staples</a>
+        <a href="/prediction/Technology" class="prediction-button">Technology</a>
+        <a href="/prediction/Utilities" class="prediction-button">Utilities</a>
+    </div>
     <br>
     <br>
-    <p id="explainer">This site utilizes an advanced machine learning algorithm to predict the value of the target asset class based on historical data of the most important economic indicators</p>
 </body>
 </html>

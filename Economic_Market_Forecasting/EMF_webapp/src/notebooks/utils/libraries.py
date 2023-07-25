@@ -20,6 +20,10 @@ from scipy.stats import pearsonr
 import itertools
 from scipy.stats import ttest_ind
 import statsmodels.tsa.stattools as tsa
+import pickle
+import joblib
+from joblib import dump
+
 
 # FRED library
 from fredapi import Fred
@@ -29,6 +33,7 @@ fred_key = '2e3cf97d1b456831253eda002ce25948'
 ## Machine Learning libraries
 from sklearn.model_selection import train_test_split, GridSearchCV
 from sklearn.pipeline import Pipeline
+from sklearn.feature_selection import SelectKBest
 # Regression Models
 from sklearn.linear_model import LinearRegression
 from sklearn.preprocessing import PolynomialFeatures

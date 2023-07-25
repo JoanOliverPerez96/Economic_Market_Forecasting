@@ -185,7 +185,7 @@ class EconomicDataAnalyzer:
         df_indicators_cum = df_indicators_rets.cumsum().fillna(0)
         return df_indicators, df_indicators_cum, df_indicators_diff, df_indicators_rets, df_indicators_limpio
 
-    def merge_data(self, list_indicators_dfs, list_market_dfs):
+    def merge_data(self, list_indicators_dfs, list_market_dfs, root_path):
         """
         Merge data from two lists of dataframes containing indicators and market data.
 
@@ -211,6 +211,9 @@ class EconomicDataAnalyzer:
                     print("Don't change date format")
             df = pd.merge(df_indicators,df_market, left_index=True, right_index=True,how='outer').fillna(method='ffill')
             list_all_dfs.append(df)
+        path = root_path.joinpath('data', 'processed', 'indicators', 'model_data.csv')
+        list_all_dfs[1].to_csv(path)
+
         return list_all_dfs[0], list_all_dfs[1], list_all_dfs[2], list_all_dfs[3]
 
     def lag_data(self, list_data_dfs, target, n_lags):
@@ -701,6 +704,52 @@ class Preprocessor:
             self.baseline_models_dict = baseline_models_dict
         return self.baseline_models_dict
   
+    def baseline_ml(self, target, X_train, X_test, y_train, y_test, baseline_models):
+        # For model scoring
+        model_results = pd.DataFrame()
+        model_scores_dict = {}
+        model_mse_dict = {}
+        model_r2_dict = {}
+
+        # For model prediction data saving
+        preds = {}
+        preds[target] = pd.Series(y_test)
+
+        for name, model in baseline_models.items():
+            print("Processing "+name)
+            if name == "PolynomialFeatures":
+                pass
+            else:
+                model.fit(X_train, y_train)
+                y_pred = model.predict(X_test)
+                # y_pred = pd.DataFrame(y_pred,index=y_test.index,columns=[name+"_"+target+"_pred"])
+                y_pred = pd.Series(y_pred,index=y_test.index)
+                preds[name+"_"+target+"_pred"] = y_pred
+                score = model.score(X_train, y_train)
+                mse = mean_squared_error(y_test, y_pred)
+                r2 = r2_score(y_test, y_pred)
+                model_scores_dict[name] = score
+                model_mse_dict[name] = mse
+                model_r2_dict[name] = r2
+
+        model_results = model_results.append([model_scores_dict,model_mse_dict,model_r2_dict], ignore_index=True).T.sort_values(by=0, ascending=False)
+        model_results.columns = ["score","mse","r2"]
+        model_results["rmse"] = np.sqrt(model_results["mse"])
+        baseline_preds = pd.DataFrame(preds)
+
+        # Pick the models that have a score above 0.75
+        model_results = model_results[model_results.loc[:,"score"]>(max(model_results.loc[:,"score"])*.75)]
+        # Sort by rmse
+        model_results.sort_values(by="rmse",ascending=True,inplace=True)
+        # Pick the model with the best rmse
+        best_model_name = model_results.index[0]
+        best_model = baseline_models[best_model_name]
+        print("--> We choose "+str(model_results.index.values)+" as the best models due to their high scores and rmse")
+        return model_results, baseline_preds, best_model, best_model_name
+
+
+
+
 
     def covariance(x: np.ndarray, y: np.ndarray) -> float:
         """ Covariance between x and y

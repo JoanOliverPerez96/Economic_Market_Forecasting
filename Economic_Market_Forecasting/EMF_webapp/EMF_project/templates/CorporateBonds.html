@@ -1,0 +1,140 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.3.0/chart.min.js"></script>
+    <title>EMF Project</title>
+    <style>
+        /* EMF Title Section */
+
+        .title-section {
+            margin: 0% 0% 0% 0%;
+            padding: 2%;
+            font-size: clamp(.5rem, .3rem + 5vw, 3rem);
+            font-weight: 300;
+            color: rgb(245, 245, 245);
+            background-image: linear-gradient(to left, #041b46, #48acfd);
+            font-family: "Oswald", sans-serif;
+            text-align: center;
+            font-weight: 600;
+
+        }
+        .subheader-section {
+            margin: 2% 0% 0% 0%;
+            padding-bottom: 2%;
+            font-size: 40px;
+            font-weight: 600;
+            background-image: linear-gradient(to left, #041b46, #48acfd);
+            color: transparent;
+            background-clip: text;
+            -webkit-background-clip: text;
+            font-family: "Oswald", sans-serif;
+            text-align: center;
+        }
+        .pred-algo {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-size: 20px;
+            font-weight: 400;
+            text-align: center;
+        }
+        .prediction-recommendation {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-size: 30px;
+            font-weight: 700;
+            text-align: center;
+            color:white;
+            padding: 2%;
+        }
+        {% if returns > 30 %}
+        .prediction-recommendation {background-color:rgb(11, 112, 11)}
+        {% elif returns > 15 %}
+        .prediction-recommendation {background-color:rgb(19, 170, 19)}
+        {% elif returns > 5 %}
+        .prediction-recommendation {background-color:rgb(164, 185, 41)}
+        {% elif returns < 0 %}
+        .prediction-recommendation {background-color:rgb(199, 90, 71)}
+        {% elif returns < -5 %}
+        .prediction-recommendation {background-color:rgb(170, 19, 19)}
+        {% endif %}
+
+        .observation-section {
+            padding-left: 33%;
+            padding-right: 33%;
+        }
+        .chart-section {
+            width: 10%;
+            height: 200px;
+            padding-left: 10%;
+            padding-right: 10%;
+            padding-bottom: 10%;
+        }
+        .back-button {
+            font-size: 8pt;
+            font-family: tahoma;
+            margin-top: 20px;
+            margin-right: 40px;
+            position:absolute;
+            top:0;
+            right:0;
+            background-color: crimson;
+            color: white;
+            padding: 10px;
+ }
+        
+    </style>
+</head>
+<body>
+
+    {% block content %}
+    <h2 class="title-section">Economic Market Forecasting</h2>
+    <h2 class="subheader-section">Prediction for <u>US Corporate Bonds</u></h2>
+    <button onclick="history.back()" class="back-button">Back</button>
+    <div width="600px" height="350px">
+    <h3 class="pred-algo">According to our prediction algorithm, the US Corporate Bonds is a...</h3>
+    <div class="observation-section"><h1 class="prediction-recommendation">{{ prediction }}: <u class="prediction-return">{{ returns }}%</u></h1></div>
+    
+        <canvas id="myChart" class="chart-section"></canvas>
+      </div>
+      
+      <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+      
+      <script>
+        {% block jquery %}
+        var endpoint = '/api/chart/data/CorporateBonds'
+        var defaultData = [];
+        var labels = [];
+        var actual = [];
+        $.ajax({
+            method: "GET",
+            url: endpoint,
+            success: function(data){
+                labels = data.labels
+                defaultData = data.default
+                actualData = data.actual
+                const ctx = document.getElementById('myChart');
+      
+        new Chart(ctx, {
+          type: 'line',
+          data: {
+            labels: labels,
+            datasets: [{
+              label: 'Prediction',
+              data: defaultData,
+              borderWidth: 1
+            },
+            {
+              label: 'Actual',
+              data: actualData,
+              borderWidth: 1
+            }]
+          }
+        })}})
+        {% endblock %}
+      </script>
+    {% endblock content%}
+</body>
+</html>

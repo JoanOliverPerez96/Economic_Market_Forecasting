@@ -91,10 +91,10 @@
 
     {% block content %}
     <h2 class="title-section">Economic Market Forecasting</h2>
-    <h2 class="subheader-section">Prediction for <u>Gold</u></h2>
+    <h2 class="subheader-section">Prediction for <u>Healthcare</u></h2>
     <button onclick="history.back()" class="back-button">Back</button>
     <div width="600px" height="350px">
-    <h3 class="pred-algo">According to our prediction algorithm, the Gold is a...</h3>
+    <h3 class="pred-algo">According to our prediction algorithm, the Healthcare is a...</h3>
     <div class="observation-section"><h1 class="prediction-recommendation">{{ prediction }}: <u class="prediction-return">{{ returns }}%</u></h1></div>
     
         <canvas id="myChart" class="chart-section"></canvas>
@@ -104,7 +104,7 @@
       
       <script>
         {% block jquery %}
-        var endpoint = '/api/chart/data/Gold'
+        var endpoint = '/api/chart/data/Healthcare'
         var defaultData = [];
         var labels = [];
         var actual = [];

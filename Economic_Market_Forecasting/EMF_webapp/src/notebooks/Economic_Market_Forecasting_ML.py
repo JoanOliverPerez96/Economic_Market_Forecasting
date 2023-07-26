@@ -175,7 +175,7 @@ class Economic_Market_Forecasting:
         #### Feature removal
         def feature_removal(df, df_top_data, model_results, best_model_name, score):
             best_model_score = model_results.loc[best_model_name,"score"]
-            if score > best_model_score*.8:
+            if score > best_model_score*.9:
                 print("We choose to remove "+str(len(df.columns)-len(df_top_data.columns))+" features")
                 df = df_top_data.copy()
             else:

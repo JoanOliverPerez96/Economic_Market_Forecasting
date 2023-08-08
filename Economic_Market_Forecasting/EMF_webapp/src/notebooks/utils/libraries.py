@@ -23,6 +23,7 @@ import statsmodels.tsa.stattools as tsa
 import pickle
 import joblib
 from joblib import dump
+from scipy.stats import norm
 
 
 # FRED library

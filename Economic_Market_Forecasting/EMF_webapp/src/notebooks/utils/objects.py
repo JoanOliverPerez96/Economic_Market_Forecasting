@@ -224,7 +224,7 @@ class EconomicDataAnalyzer:
         :return: A tuple of pandas dataframes where each dataframe is a copy of the input dataframe with its features lagged.
         """
         list_dfs = []
-        n_lags = 12
+        n_lags = n_lags
 
         for df in list_data_dfs:
             df = df.copy()

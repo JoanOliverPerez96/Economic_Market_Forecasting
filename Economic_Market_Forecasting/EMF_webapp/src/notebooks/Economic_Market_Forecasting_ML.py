@@ -151,6 +151,7 @@ class Economic_Market_Forecasting:
 
         df_all_lag_data, df_all_lag_data_rets, df_all_lag_data_cum, df_all_lag_data_diff = eda.lag_data(list_data_dfs, target, n_lags=12)
         df = eda.remove_outliers(df_all_lag_data_rets)
+        
         ## Data Preprocessing
         econ_ml = Preprocessor()
         ### Feature Reduction

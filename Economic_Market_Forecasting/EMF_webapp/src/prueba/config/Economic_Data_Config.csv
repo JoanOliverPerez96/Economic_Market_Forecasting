@@ -1,0 +1,37 @@
+﻿Codigo;Indicador;Tipo;Country
+DGS10;10-Year Treasury Yield;irates;US
+DGS2;2-Year Treasury Yield;irates;US
+DFF;Federal Funds Effective Rate;irates;US
+DGS1MO;1-Month Treasury Yield;irates;US
+DGS3MO;3-Month Treasury Yield;irates;US
+DGS5;5-Year Treasury Yield;irates;US
+DGS20;20-Year Treasury Yield;irates;US
+DGS30;30-Year Treasury Yield;irates;US
+MORTGAGE15US;15-Year Mortgage Rate;irates;US
+MORTGAGE30US;30-Year Mortgage Rate;irates;US
+IRLTLT01EZM156N;10-Year Euro Gov Bond Yield;irates;EU
+IR3TIB01EZM156N;3-Month Euro Gov Bond Yield;irates;EU
+IR3TTS01CNM156N;3-Month China Gov Bond Yield;irates;China
+INDIRLTLT01STM;10-Year India Gov Bond Yield;irates;India
+CPIAUCSL;CPI;inflation;US
+PPIFIS;PPI;inflation;US
+CPALTT01CNM659N;China CPI;inflation;China
+OECDCPALTT01GYM;Europe CPI;inflation;EU
+UNRATE;Unemployment Rate;unemployment;US
+GDP;GDP;gdp;US
+GDPC1;Real GDP;gdp;US
+UMCSENT;Consumer Confidence Index;cci;US
+GFDEBTN;Government Debt;gov_debt;US
+TDSP;Debt Service vs Disposable Income;household_debt;US
+DRCCLACBS;Credit Card Delinquency;delinquency;US
+DTWEXBGS;US Dollar Index;usd;US
+CP;Corporate Profits;profits;US
+BOGZ1FA106110115Q;EBIT;ebit;US
+BOGZ1FA106110405Q;Retained Earnings;ret_earnings;US
+VIXCLS;VIX;volatility;US
+PERMIT;Building Permits;housing;US
+QUSR628BIS;Residential Property Prices;housing;US
+HOUST;Housing Starts;housing;US
+M1V;Velocity of Money;velocity;US
+MRTSSM44000USS;Retail Sales;sales;US
+INDPRO;Industrial Production;production;US

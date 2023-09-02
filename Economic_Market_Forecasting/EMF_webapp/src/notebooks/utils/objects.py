@@ -677,8 +677,6 @@ class Preprocessor:
         cnn_model.fit(X_train_scale, y_train, epochs=epochs, batch_size=batch_size, validation_split=validation_split)
         return cnn_model
 
-    
-
     def define_baseline_models(self, baseline_models_dict=None,*args, **kwargs):
         """
         Splits the data into training and test sets.
@@ -771,7 +769,7 @@ class Preprocessor:
         assert method in ["pearson", "spearman", "kendall"]
         corr, p_value = stats.pearsonr(x, y)
         return corr, p_value
-    
+
     # def scale_data(self, df_data: pd.DataFrame, target: str, cutoff_date: str):
     #     """
     #     Scale the input dataframe by subtracting the mean and scaling to unit variance.

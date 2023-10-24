@@ -230,11 +230,14 @@ class EconomicDataAnalyzer:
             df = df.copy()
             lagged_df = pd.DataFrame()
             for column in df.columns:
-                if target in column:
-                    pass
-                else:
-                    for i in range(1, n_lags + 1):
-                        lagged_df[f'{column} (t-{i})'] = df[column].shift(i)
+                for i in range(1, n_lags + 1):
+                    lagged_df[f'{column} (t-{i})'] = df[column].shift(i)
+                # Disregard the target column for lagging
+                # if target in column:
+                #     pass
+                # else:
+                #     for i in range(1, n_lags + 1):
+                #         lagged_df[f'{column} (t-{i})'] = df[column].shift(i)
             # Combine the original DataFrame with the lagged DataFrame
             df = pd.concat([df, lagged_df], axis=1).dropna()
             list_dfs.append(df)
